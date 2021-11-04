@@ -20,10 +20,10 @@ const Banner = () => {
                 </div>
                 <div className="carousel-inner">
                     <div className="carousel-item active  " data-bs-interval="2000">
-                        <img src="https://i.ibb.co/n3zbMLC/img1.png" className="d-block w-100" alt="..." />
+                        <img src="https://i.ibb.co/sCf32nx/img1.png" className="d-block w-100" alt="..." />
                     </div>
                     <div className="carousel-item " data-bs-interval="2000">
-                        <img src="https://i.ibb.co/svXXZps/img2.jpg" className="d-block w-100" alt="..." />
+                        <img src="https://i.ibb.co/n0C0F2Z/img1-1.png" className="d-block w-100" alt="..." />
                     </div>
                     <div className="carousel-item " data-bs-interval="2000">
                         <img src="https://i.ibb.co/3dtPngj/img3.png " className="d-block w-100" alt="..." />
