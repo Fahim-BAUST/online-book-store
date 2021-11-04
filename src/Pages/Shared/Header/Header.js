@@ -56,82 +56,91 @@ const Header = () => {
                                     <i className="fas fa-users"></i> About us
                                 </NavLink>
                             </li>
-                            <li className="nav-item dropdown">
-                                <NavLink
-                                    activeStyle={{
-                                        fontWeight: "bolder"
-                                    }}
-                                    to="" className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i className="fas fa-tasks"></i> Check Orders
-                                </NavLink>
-                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li>
-                                        <NavLink
-                                            className="nav-link text-dark dropdown-item"
-                                            to="/myOrder"
-
-                                            activeStyle={{
-                                                fontWeight: "bolder",
-
-                                            }}
-                                        >
-                                            My order
-                                        </NavLink>
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li className="nav-item dropdown">
-                                <NavLink
-                                    activeStyle={{
-                                        fontWeight: "bolder"
-                                    }}
-                                    to="" className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i className="fas fa-tasks"></i> Manage
-                                </NavLink>
-                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li>
-                                        <NavLink
-                                            className="nav-link text-dark dropdown-item"
-                                            to="/allOrder"
-                                            activeStyle={{
-                                                fontWeight: "bolder"
-
-                                            }}
-                                        >
-                                            All order
-                                        </NavLink>
-
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            className="nav-link text-dark dropdown-item"
-                                            to="/addBook"
-                                            activeStyle={{
-                                                fontWeight: "bolder"
-
-                                            }}
-                                        >
-                                            Add Book
-                                        </NavLink>
 
 
-                                    </li>
-
-                                </ul>
-                            </li>
                         </ul>
+                        <form className="d-flex align-items-center">
+                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li className="nav-item dropdown">
+                                    <NavLink
+                                        activeStyle={{
+                                            fontWeight: "bolder"
+                                        }}
+                                        to="" className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i className="fas fa-tasks"></i> Check Orders
+                                    </NavLink>
+                                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li>
+                                            <NavLink
+                                                className="nav-link text-dark dropdown-item"
+                                                to="/myOrder"
+
+                                                activeStyle={{
+                                                    fontWeight: "bolder",
+
+                                                }}
+                                            >
+                                                My order
+                                            </NavLink>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li className="nav-item dropdown">
+                                    <NavLink
+                                        activeStyle={{
+                                            fontWeight: "bolder"
+                                        }}
+                                        to="" className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i className="fas fa-tasks"></i> Manage
+                                    </NavLink>
+                                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li>
+                                            <NavLink
+                                                className="nav-link text-dark dropdown-item"
+                                                to="/allOrder"
+                                                activeStyle={{
+                                                    fontWeight: "bolder"
+
+                                                }}
+                                            >
+                                                All order
+                                            </NavLink>
+
+                                        </li>
+                                        <li>
+                                            <NavLink
+                                                className="nav-link text-dark dropdown-item"
+                                                to="/addBook"
+                                                activeStyle={{
+                                                    fontWeight: "bolder"
+
+                                                }}
+                                            >
+                                                Add Book
+                                            </NavLink>
+
+
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+
+                        </form>
                         <form className="d-flex align-items-center">
 
                             <NavLink
                                 className="nav-link text-warning "
                                 to="/cart"
                             >
-                                <i className="fas fa-cart-arrow-down fs-2"></i>
+                                <i className="fas fa-cart-arrow-down fs-2 fw-bold"></i>
                             </NavLink>
 
                             {/* <img style={{ width: "35px" }} className="img-fluid rounded-circle" src='' alt="" /> */}
-                            <NavLink to="/login"><button className="btn btn-outline-info" type="submit"><i className="fas fa-sign-in-alt"></i> Login</button></NavLink>
+                            <NavLink to="/login"><button className="btn btn-outline-success" type="submit"><i className="fas fa-sign-in-alt"></i> Login</button></NavLink>
                         </form>
                     </div>
                 </div>
