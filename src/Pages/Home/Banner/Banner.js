@@ -1,13 +1,17 @@
 import React from 'react';
 import 'animate.css';
+import Font, { Text } from 'react-font'
 
 const Banner = () => {
     return (
         <div>
-            <h1 className="mt-2  fw-bold text-center site-name" style={{
-                color: "#03e12", fontSize: "60px", fontFamily: "cursive"
-            }}>BookStore 103</h1>
-            <div id="carouselExampleCaptions" className="carousel slide carousel-dark" data-bs-ride="carousel">
+            <Font family="Dancing Script">
+
+
+                <h1 className="mt-4 pt-4 mb-5 fw-bold text-center site-name animate__animated animate__backInDown" style={{
+                    color: "#25383C", fontSize: "60px"
+                }}>BookStore 103</h1></Font>
+            <div id="carouselExampleCaptions" className="carousel slide " data-bs-ride="carousel">
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
