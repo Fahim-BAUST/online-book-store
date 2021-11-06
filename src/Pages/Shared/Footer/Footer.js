@@ -5,6 +5,7 @@ const Footer = () => {
 
     return (
         <div>
+            {/* bootsrap theke copy kore design kora  */}
             <div className="container mt-5">
                 <div className="row">
                     <div className="col">
