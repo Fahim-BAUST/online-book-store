@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Rating from 'react-rating';
+import { Link } from 'react-router-dom';
 import './products.css';
 const Products = () => {
     // fetching(getting) books from json file 
@@ -17,7 +18,7 @@ const Products = () => {
         {/* <h4 style={{ textAlign: "start", padding: "10px" }}></h4> */}
         {/* card gulo row r column use kore dekhano hocce(small device,medium device and learge device)  */}
         <div className=' row row-cols-1 row-cols-md-2 row-cols-lg-5 g-4 m-0 container-fluid'>
-
+            {/* prottekta card k alada kore dekhano hocce */}
             {
                 products?.slice(0, 5).map(product => <div
                     key={product?.key}
@@ -33,13 +34,12 @@ const Products = () => {
                             readonly></Rating></small>
                     </p>
                     <p style={{ textAlign: "start" }}>৳ {product?.cost}</p>
-                    {/* <Link to={`/placeOrder/${product?.id}`}> */}
+                    <Link to={`/placeOrder/${product?.id}`}>
                         <button>Buy Now</button>
-                    {/* </Link> */}
+                    </Link>
                 </div>)
             }
         </div>
-        <h4 style={{ textAlign: "start", padding: "20px" }}></h4>
         <div className=' row row-cols-1 row-cols-md-2 row-cols-lg-5 g-4 m-0 container-fluid'>
 
         {
@@ -57,9 +57,9 @@ const Products = () => {
                             readonly></Rating></small>
                     </p>
                     <p style={{ textAlign: "start" }}>৳ {product?.cost}</p>
-                    {/* <Link to={`/placeOrder/${product?.id}`}> */}
+                    <Link to={`/placeOrder/${product?.id}`}>
                         <button>Buy Now</button>
-                    {/* </Link> */}
+                    </Link>
                 </div>)
             }
         </div>

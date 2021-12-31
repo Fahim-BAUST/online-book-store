@@ -1,0 +1,32 @@
+.placeOrder{
+    display: flex;
+}
+.placeOrder img{
+    height: 400px;
+}
+.placeOrder button{
+    border: 1px solid rgba(255, 127, 80, 0.89);
+    border-radius: 5px;
+    width: 152px;
+    height: 41px;
+   font-weight: 600;
+   color: rgba(255, 127, 80, 0.89);
+   background: rgb(253, 253, 253);
+   margin-top: 30px;
+   margin-bottom: 10px;
+}
+.placeOrder button:hover{
+    background-color: rgba(255, 127, 80, 0.89);
+    color: white;
+    transition: .4s;
+}
+
+@media only screen and (max-width: 600px) {
+    .placeOrder {
+        display: block;
+    }
+    .placeOrder img{
+        height: 200px;
+    }
+    
+  }

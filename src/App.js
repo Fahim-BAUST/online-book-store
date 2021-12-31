@@ -6,6 +6,7 @@ import Footer from './Pages/Shared/Footer/Footer';
 import NotFound from './Pages/NotFound/NotFound';
 import About from './Pages/About/About';
 import Books from './Pages/Books/Books';
+import PlaceOrder from './Pages/PlaceOrder/PlaceOrder';
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
 
           <Route path="/about">
             <About></About>
+          </Route>
+          <Route path="/placeOrder/:serviceId">
+            <PlaceOrder></PlaceOrder>
           </Route>
 
           {/* 404 not found page er jonne path thik kora hoise  */}
