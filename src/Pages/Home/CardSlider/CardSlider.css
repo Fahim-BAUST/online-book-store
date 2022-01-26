@@ -1,0 +1,25 @@
+/******* Tips and tricks  *******/
+.tips__card {
+    width: 100% !important;
+    height: 251px !important;
+
+}
+
+.tips__card-container {
+    height: 400px;
+
+}
+
+.tips__card-body {
+    width: 391px;
+    height: 119px;
+
+}
+
+.tips__card-grid {
+    grid-gap: 10px;
+}
+
+.tips_slider-display {
+    display: none;
+}

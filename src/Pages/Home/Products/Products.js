@@ -35,7 +35,7 @@ const Products = () => {
                     </p>
                     <p style={{ textAlign: "start" }}>৳ {product?.cost}</p>
                     <Link to={`/placeOrder/${product?.id}`}>
-                        <button>Buy Now</button>
+                        <button>Add to cart</button>
                     </Link>
                 </div>)
             }
@@ -58,7 +58,7 @@ const Products = () => {
                     </p>
                     <p style={{ textAlign: "start" }}>৳ {product?.cost}</p>
                     <Link to={`/placeOrder/${product?.id}`}>
-                        <button>Buy Now</button>
+                        <button>Add to cart</button>
                     </Link>
                 </div>)
             }
