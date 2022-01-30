@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Rating from 'react-rating';
+import Swal from 'sweetalert2';
 
 const Review = () => {
     const [users, setUsers] = useState([]);
@@ -7,6 +8,13 @@ const Review = () => {
         fetch('https://morning-peak-49686.herokuapp.com/review')
             .then(res => res.json())
             .then(data => setUsers(data))
+            .catch((error) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${error.message === "Failed to fetch" ? "No network connection" : error.message}`,
+                })
+            })
 
     }, []);
     return (
@@ -47,7 +55,7 @@ const Review = () => {
                                             fullSymbol="fas fa-star"
                                             readonly></Rating></small>
                                     </p>
-                                    <p class="card-text">{user?.review}</p>
+                                    <p class="card-text">{user?.message}</p>
                                 </div>
                             </div>
                         </div>)
