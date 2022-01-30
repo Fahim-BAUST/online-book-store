@@ -5,24 +5,108 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import './PlaceOrder.css';
 import { Table } from 'react-bootstrap';
-const PlaceOrder = () => {
+import useAuth from '../Hooks/useAuth';
+import { Alert, Snackbar } from '@mui/material';
+import AddReview from '../AddReview/AddReview';
+const ProductDetails = () => {
+    const { user } = useAuth()
     // fetching books from json 
     const { serviceId } = useParams();
     const [serviceDetails, setServiceDetails] = useState([]);
     const [singleService, setSingleService] = useState({})
     const [key, setKey] = useState('home');
+
+    const [open, setOpen] = React.useState(false);
+    const [wrong, setWrong] = React.useState(false);
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+        setWrong(false);
+    };
+
+
     useEffect(() => {
-        fetch('/book.json')
+        fetch('https://morning-peak-49686.herokuapp.com/books')
             .then(res => res.json())
             .then(data => setServiceDetails(data))
     }, [])
     useEffect(() => {
-        const foundDetails = serviceDetails.find(detail => detail.id == serviceId)
+        const foundDetails = serviceDetails.find(detail => detail._id == serviceId)
         setSingleService(foundDetails)
     }, [serviceDetails])
 
+    const [quantity, setQuantity] = useState(1)
+
+    const quantityManage = (value) => {
+
+        if (value === true) {
+            const values = quantity + 1;
+            setQuantity(values);
+        }
+        else {
+            if (quantity > 1) {
+                const values = quantity - 1;
+                setQuantity(values);
+            }
+        }
+
+
+    }
+
+
+    const handleAddToCart = () => {
+        const data = {};
+        data.product = singleService._id;
+        data.orderName = singleService.bookName;
+        data.price = singleService.cost;
+        data.image = singleService.image;
+        data.email = user?.email;
+        data.quantity = quantity;
+
+        fetch('https://morning-peak-49686.herokuapp.com/addToCart', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.insertedId) {
+                    setOpen(true);
+                } else {
+
+                    setWrong(true);
+                }
+            })
+
+    }
+
     return (
         <div>
+            {open === true && <Snackbar
+                open={open}
+                autoHideDuration={1500}
+                onClose={handleClose}
+
+            >
+                <Alert variant="filled" severity="success">Successfully Done</Alert>
+
+            </Snackbar>}
+            {
+                wrong === true && <Snackbar
+                    open={open}
+                    autoHideDuration={1500}
+                    onClose={handleClose}
+
+                >
+
+                    <Alert variant="filled" severity="warning">Something Wrong!</Alert>
+                </Snackbar>}
             <div className='placeOrder container pt-5'>
                 <div className='container text-center'>
                     <img className='img-fluid' src={singleService?.image} alt="" />
@@ -41,9 +125,30 @@ const PlaceOrder = () => {
                     <p className='text-start'> Category : {singleService?.category}</p>
                     <p className='text-start'> Edition : {singleService?.edition}</p>
                     <p className='text-start'>Description :<p style={{ fontSize: "17px" }}>{singleService?.details}</p></p>
-                    <Link to={`/shipping/${singleService?.id}`}>
-                        <button>Buy Now</button>
-                    </Link>
+                    <div className='d-flex  align-items-center' >
+                        <div>
+                            {user?.email ?
+                                <button onClick={handleAddToCart} className='btn1'>Add To Cart</button>
+
+                                :
+                                <Link to={`/login`}>
+                                    <button className='btn1'>Login Please</button>
+                                </Link>
+
+                            }
+                        </div>
+                        <div className="input-group-sm mt-3 ms-4 d-flex justify-content-start align-items-center ">
+                            <button onClick={() => quantityManage(false)} className="btn btn-default"><i className="fas fa-minus"></i></button>
+
+                            <input className="text-center fw-bold rounded" disabled type="number" style={{ width: "20%", border: "none", paddingLeft: "15px" }} value={quantity} />
+
+
+                            <button onClick={() => quantityManage(true)} className="btn btn-default"><i className="fas fa-plus"></i></button>
+                        </div>
+
+
+                    </div>
+
                 </div>
             </div>
             <div>
@@ -56,7 +161,7 @@ const PlaceOrder = () => {
                         className="mb-3"
                     >
                         <Tab eventKey="home" title="Specification">
-                            <Table  striped bordered hover>
+                            <Table striped bordered hover>
                                 <tbody>
                                     <tr>
                                         <td>Title</td>
@@ -94,9 +199,14 @@ const PlaceOrder = () => {
                     </Tabs>
                 </div>
             </div>
+
+            <div>
+                <h2 className="mb-3 text-center" style={{ color: "#3F000F" }}>Add Review</h2>
+                <AddReview></AddReview>
+            </div>
         </div>
 
     );
 };
 
-export default PlaceOrder;
+export default ProductDetails;

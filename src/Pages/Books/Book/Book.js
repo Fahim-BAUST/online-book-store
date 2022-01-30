@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';;
 
 const Book = (props) => {
-    const { image, bookName, offer, author, category, cost } = props.book
+    const { image, bookName, offer, author, category, cost, _id } = props.book
     return (
         <div>
             <Card className="service-card" style={{ borderLeft: "3px solid #c29d59" }}>
@@ -39,8 +39,8 @@ const Book = (props) => {
                         className="fw-bold " variant="h5" >
                         <span className="fw-bold mt-3">TK {cost} </span>
                     </Typography>
-                    <NavLink className="text-decoration-none" to={`/placeOrder/id`}>
-                        <Button style={{ color: "white", backgroundColor: "#c29d59" }} sx={{ paddingX: 2, marginLeft: 2, marginBottom: 2, fontWeight: "bold" }} variant="contained" size="small"><i className="fas fa-luggage-cart me-2"></i> add to cart </Button>
+                    <NavLink className="text-decoration-none" to={`/productsDetails/${_id}`}>
+                        <Button style={{ color: "white", backgroundColor: "#c29d59" }} sx={{ paddingX: 2, marginLeft: 2, marginBottom: 2, fontWeight: "bold" }} variant="contained" size="small"><i className="fas fa-luggage-cart me-2"></i> details </Button>
                     </NavLink>
                 </div>
 

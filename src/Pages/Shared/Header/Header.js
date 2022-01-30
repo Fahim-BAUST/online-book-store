@@ -2,7 +2,10 @@ import React from 'react';
 import Font from 'react-font';
 import { NavLink } from 'react-router-dom';
 import 'animate.css';
+import useAuth from '../../Hooks/useAuth';
 const Header = () => {
+
+    const { user, logout, admin } = useAuth()
     return (
         <div className="sticky-top shadow ">
             <Font family="Zen Antique">
@@ -61,10 +64,9 @@ const Header = () => {
                                     </NavLink>
                                 </li>
 
-
                             </ul>
                             <form className="d-flex align-items-center">
-                                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                                {user?.email && <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                     <li className="nav-item dropdown">
                                         <NavLink
                                             activeStyle={{
@@ -88,10 +90,11 @@ const Header = () => {
                                                 </NavLink>
                                             </li>
 
+
                                         </ul>
                                     </li>
-                                </ul>
-                                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                                </ul>}
+                                {admin && <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                     <li className="nav-item dropdown">
                                         <NavLink
                                             activeStyle={{
@@ -117,7 +120,7 @@ const Header = () => {
                                             <li>
                                                 <NavLink
                                                     className="nav-link text-dark dropdown-item"
-                                                    to="/addBook"
+                                                    to="/addProduct"
                                                     activeStyle={{
                                                         fontWeight: "bolder"
 
@@ -128,23 +131,55 @@ const Header = () => {
 
 
                                             </li>
+                                            <li>
+                                                <NavLink
+                                                    className="nav-link text-dark dropdown-item"
+                                                    to="/deleteProducts"
+                                                    activeStyle={{
+                                                        fontWeight: "bolder"
+
+                                                    }}
+                                                >
+                                                    Delete Product
+                                                </NavLink>
+
+
+                                            </li>
+                                            <li>
+                                                <NavLink
+                                                    className="nav-link text-dark dropdown-item"
+                                                    to="/makeAdmin"
+                                                    activeStyle={{
+                                                        fontWeight: "bolder"
+
+                                                    }}
+                                                >
+                                                    Make Admin
+                                                </NavLink>
+
+
+                                            </li>
 
                                         </ul>
                                     </li>
-                                </ul>
+                                </ul>}
 
                             </form>
                             <form className="d-flex align-items-center">
 
-                                <NavLink
+                                {user?.email && <NavLink
                                     className="nav-link text-warning "
                                     to="/cart"
                                 >
                                     <i className="fas fa-cart-arrow-down fs-2 fw-bold"></i>
-                                </NavLink>
+                                </NavLink>}
 
-                                {/* <img style={{ width: "35px" }} className="img-fluid rounded-circle" src='' alt="" /> */}
-                                <NavLink to="/login"><button className="btn btn-outline-success" type="submit"><i className="fas fa-sign-in-alt"></i> Login</button></NavLink>
+                                <form className="d-flex align-items-center">
+                                    {user?.photoURL && <img style={{ width: "35px" }} className="img-fluid rounded-circle" src={user.photoURL} alt="" />}
+                                    {user?.email === 'admin@gmail.com' ? <span className="me-2">ADMIN</span> : <span className="me-2">{user.displayName}</span>}
+
+                                    {user?.email ? <button onClick={logout} className="btn btn-outline-info" type="submit"><i className="fas fa-sign-out-alt"></i> Logout</button> : <NavLink to="/login"><button className="btn btn-outline-info" type="submit"><i className="fas fa-sign-in-alt"></i> Login</button></NavLink>}
+                                </form>
                             </form>
                         </div>
                     </div>

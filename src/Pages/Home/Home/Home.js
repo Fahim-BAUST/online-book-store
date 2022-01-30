@@ -8,6 +8,7 @@ import Products from '../Products/Products';
 import Features from '../Features/Features';
 import SecondBanner from '../SecondBanner/SecondBanner';
 import CardSlider from '../CardSlider/CardSlider';
+import Review from '../Review/Review';
 
 
 const Home = () => {
@@ -19,6 +20,8 @@ const Home = () => {
             <Features></Features>
             <SecondBanner></SecondBanner>
             <CardSlider></CardSlider>
+            <Review></Review>
+
         </div>
     );
 };

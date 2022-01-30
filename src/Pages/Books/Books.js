@@ -11,7 +11,7 @@ const Books = () => {
 
     useEffect(() => {
 
-        fetch('http://localhost:5000/books')
+        fetch('https://morning-peak-49686.herokuapp.com/books')
             .then(res => res.json())
             .then(data => {
                 setBooks(data)

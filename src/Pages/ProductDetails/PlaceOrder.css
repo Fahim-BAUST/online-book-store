@@ -4,7 +4,7 @@
 .placeOrder img{
     height: 400px;
 }
-.placeOrder button{
+.placeOrder .btn1{
     border: 1px solid rgba(255, 127, 80, 0.89);
     border-radius: 5px;
     width: 152px;
@@ -15,7 +15,7 @@
    margin-top: 30px;
    margin-bottom: 10px;
 }
-.placeOrder button:hover{
+.placeOrder .btn1:hover{
     background-color: rgba(255, 127, 80, 0.89);
     color: white;
     transition: .4s;
