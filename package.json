@@ -22,6 +22,8 @@
     "react-rating": "^2.0.5",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
+    "react-slick": "^0.28.1",
+    "slick-carousel": "^1.8.1",
     "react-whirligig": "^6.6.15",
     "sweetalert2": "^11.2.0",
     "web-vitals": "^1.1.2"

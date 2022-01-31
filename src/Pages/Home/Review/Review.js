@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Rating from 'react-rating';
 import Swal from 'sweetalert2';
+import Slider from 'react-slick';
+import Reviews from './Reviews';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Review = () => {
     const [users, setUsers] = useState([]);
@@ -17,61 +20,75 @@ const Review = () => {
             })
 
     }, []);
+
+
+    const set = { rtl: true };
+    const settings = {
+        dots: true,
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 15000,
+        autoplaySpeed: 15000,
+        cssEase: "linear",
+        initialSlide: 0,
+        swipeToSlide: true,
+        responsive: [
+            {
+                breakpoint: 1900,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true
+                }
+            }, {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    initialSlide: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+
+    };
+
     return (
         <div>
             <h1 className="text-center p-3">User Reviews</h1>
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner ">
-                    <div class="carousel-item active" style={{ height: '350px' }} >
-                        <div class="card mx-auto shadow" style={{ width: '30rem', height: '200px', marginTop: '80px' }}>
-                            <div class="card-body text-center">
-                                <h5 class="card-title">XXXXXX</h5>
-                                <p style={{ textAlign: "center", color: "rgba(255, 127, 80, 0.89)" }}>
-                                    <small ><Rating
-                                        initialRating={'5'}
-                                        emptySymbol="far fa-star"
-                                        fullSymbol="fas fa-star"
-                                        readonly></Rating></small>
-                                </p>
-                                <p class="card-text">Not Bad </p>
-                            </div>
-                        </div>
-
-                    </div>
+            <div>
+                <Slider {...settings}{...set}>
                     {
-                        users?.map(user => <div class="carousel-item " style={{ height: '350px' }}>
-                            <div class="card mx-auto shadow" style={{ width: '30rem', height: '200px', marginTop: '80px' }}>
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">{user?.name}</h5>
-                                    <p style={{ textAlign: "center", color: "rgba(255, 127, 80, 0.89)" }}>
-                                        <small ><Rating
-                                            initialRating={user?.rating}
-                                            emptySymbol="far fa-star"
-                                            fullSymbol="fas fa-star"
-                                            readonly></Rating></small>
-                                    </p>
-                                    <p class="card-text">{user?.message}</p>
-                                </div>
-                            </div>
-                        </div>)
+                        users.map(review => <Reviews
+                            review={review} key={review?._id}
+                        ></Reviews>
+
+                        )
+
                     }
+                </Slider >
 
-
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
+
+
         </div>
     );
 };
