@@ -154,7 +154,7 @@ const useFirebase = () => {
     return {
         user,
         isLoading,
-        token,
+
         registerUser,
         loginUser,
         signInWithGoogle,

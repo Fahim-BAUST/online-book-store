@@ -27,7 +27,6 @@ function App() {
       <AuthProvider>
         <Router>
           <Header></Header>
-
           <Routes>
             <Route exact path="/" element={<Home></Home>} />
             <Route path="/home" element={<Home></Home>} />
@@ -36,6 +35,7 @@ function App() {
             <Route path="/productsDetails/:serviceId" element={<ProductDetails></ProductDetails>} />
             <Route path="/login" element={<Login></Login>} />
             <Route path="/register" element={<Registration></Registration>} />
+
             <Route path="/cart" element={<PrivateRoute><CartAndPlaceOrder /></PrivateRoute>} />
             <Route path="/myOrder" element={<PrivateRoute><MyOrder /></PrivateRoute>} />
             <Route path="/allOrder" element={<PrivateRoute><ManageAllOrder /></PrivateRoute>} />
