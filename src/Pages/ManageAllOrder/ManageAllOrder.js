@@ -9,6 +9,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 const ManageAllOrder = () => {
     const [orders, setOrders] = useState([]);
+    const [displayOrders, setDisplayOrders] = useState([]);
 
     const [openModal, setOpenModal] = React.useState(false);
     const [deleteId, setDeleteId] = React.useState(null);
@@ -17,7 +18,10 @@ const ManageAllOrder = () => {
     useEffect(() => {
         fetch("https://morning-peak-49686.herokuapp.com/allOrders")
             .then((res) => res.json())
-            .then((data) => setOrders(data))
+            .then((data) => {
+                setOrders(data)
+                setDisplayOrders(data)
+            })
             .catch((error) => {
                 Swal.fire({
                     icon: 'error',
@@ -25,7 +29,7 @@ const ManageAllOrder = () => {
                     text: `${error.message === "Failed to fetch" ? "No network connection" : error.message}`,
                 })
             });
-    }, [orders]);
+    }, []);
 
     const handleCloseModal = () => {
         setOpenModal(false);
@@ -106,6 +110,15 @@ const ManageAllOrder = () => {
             })
 
     };
+
+    const handleCategory = (category) => {
+        const matchedOrders = orders.filter(order => order?.orderStatus.toLowerCase().includes(category.toLowerCase()));
+
+        setDisplayOrders(matchedOrders);
+
+    }
+
+
     return (
         <div>
             <Dialog
@@ -128,7 +141,7 @@ const ManageAllOrder = () => {
             </Dialog>
 
 
-            <TableContainer component={Paper}>
+            <TableContainer sx={{ mb: 30 }} component={Paper}>
 
                 <Font family="Yuji Syuku">
                     <Typography
@@ -137,7 +150,7 @@ const ManageAllOrder = () => {
                             pt: 3,
                             fontWeight: 800,
                             marginTop: 2,
-                            marginBottom: 5,
+                            marginBottom: 2,
                             color: "#3F000F",
                             fontSize: "40px",
                         }}
@@ -145,7 +158,24 @@ const ManageAllOrder = () => {
                     >
                         Manage all Order
                     </Typography>
-                    <Table aria-label="simple table">
+                    <center>
+                        <div className="btn-group">
+                            <button type="button" className="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Order Status
+                            </button>
+                            <ul className="dropdown-menu">
+                                <li><button onClick={() => handleCategory('Pending')} className="dropdown-item" >Pending</button></li>
+                                <li><hr className="dropdown-divider" /></li>
+                                <li><button onClick={() => handleCategory('Delivered')} className="dropdown-item" >Delivered</button></li>
+                                <li><hr className="dropdown-divider" /></li>
+                                <li><button onClick={() => handleCategory('Shipped')} className="dropdown-item" >Shipped</button></li>
+                                <li><hr className="dropdown-divider" /></li>
+                                <li><button onClick={() => handleCategory('Approved')} className="dropdown-item" >Approved</button></li>
+
+                            </ul>
+                        </div>
+                    </center>
+                    <Table sx={{ mt: 5 }} aria-label="simple table">
 
                         <TableHead>
                             <TableRow sx={{ backgroundColor: "dimgray" }}>
@@ -170,7 +200,7 @@ const ManageAllOrder = () => {
                                 </Box>
                             ) :
 
-                                orders.map((order) => (
+                                displayOrders.map((order) => (
                                     <TableRow
                                         key={order._id}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

@@ -9,6 +9,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import CheckOutForm from './CheckOutForm';
 
 const stripePromise = loadStripe('pk_test_51JypbOAGDt5ordsCYdrLJuiGD6kBwwg7nyoZSFz6hVSyKKjNCkrIyIHDgXIqFWvX8W7YtNYwkIMmh55mooiccpP100QZBQ8gt5');
+
 const Payment = () => {
     const { orderId } = useParams();
     const [paymentProduct, setPaymentProduct] = useState([])
