@@ -19,6 +19,7 @@ import ManageAllOrder from './Pages/ManageAllOrder/ManageAllOrder';
 import AddProduct from './Pages/AddProduct/AddProduct';
 import DeleteProducts from './Pages/DeleteProducts/DeleteProducts';
 import MakeAdmin from './Pages/MakeAdmin/MakeAdmin';
+import Success from './Pages/CartAndPlaceOrder/payment/Success';
 
 function App() {
   return (
@@ -43,6 +44,9 @@ function App() {
             <Route path="/addProduct" element={<PrivateRoute>< AddProduct /></PrivateRoute>} />
             <Route path="/deleteProducts" element={<PrivateRoute><DeleteProducts /></PrivateRoute>} />
             <Route path="/makeAdmin" element={<PrivateRoute><MakeAdmin /></PrivateRoute>} />
+            <Route path="/success/:id" element={<Success></Success>} />
+
+
             <Route exact path="*" element={<NotFound></NotFound>} />
           </Routes>
 

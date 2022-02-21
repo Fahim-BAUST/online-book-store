@@ -18,7 +18,7 @@ const Payment = () => {
 
     useEffect(() => {
 
-        fetch(`https://morning-peak-49686.herokuapp.com/allOrders/payment/${orderId}`)
+        fetch(`http://localhost:5000/allOrders/payment/${orderId}`)
             .then(res => res.json())
             .then(data => setPaymentProduct(data))
             .catch((error) => {

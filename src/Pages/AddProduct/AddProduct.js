@@ -18,7 +18,7 @@ const AddProduct = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch('https://morning-peak-49686.herokuapp.com/addProduct', {
+                fetch('http://localhost:5000/addProduct', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

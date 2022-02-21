@@ -16,7 +16,7 @@ const CheckOutForm = ({ paymentProduct }) => {
     const [clientSecret, setClientSecret] = useState("");
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://morning-peak-49686.herokuapp.com/create-payment-intent", {
+        fetch("http://localhost:5000/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ totalPrice }),
@@ -90,7 +90,7 @@ const CheckOutForm = ({ paymentProduct }) => {
             setProcessing(false);
             setSuccess(true);
 
-            const url = `https://morning-peak-49686.herokuapp.com/allOrders/paymentStatus/${_id}`
+            const url = `http://localhost:5000/allOrders/paymentStatus/${_id}`
             const payment = {
                 amount: paymentIntent.amount,
                 created: paymentIntent.created,

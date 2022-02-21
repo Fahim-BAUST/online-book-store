@@ -20,7 +20,7 @@ const MyOrder = () => {
 
 
     useEffect(() => {
-        fetch(`https://morning-peak-49686.herokuapp.com/allOrders/${user.email}`)
+        fetch(`http://localhost:5000/allOrders/${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 setOrders(data);
@@ -43,7 +43,7 @@ const MyOrder = () => {
 
     const handleDeleteModal = (id) => {
 
-        const url = `https://morning-peak-49686.herokuapp.com/allOrders/${id}`;
+        const url = `http://localhost:5000/allOrders/${id}`;
         fetch(url, {
             method: "DELETE",
         })
@@ -162,7 +162,12 @@ const MyOrder = () => {
                                         <i className="me-1 fas fa-check-circle fs-5 text-success"></i>
                                     )}
                                     {order?.orderStatus}{" "}</TableCell>
-                                <TableCell align="center">{order?.payment ? 'paid' : <Link className="text-decoration-none" to={`/payment/${order?._id}`}><i className="fab fa-amazon-pay fs-3 fw-bold"></i></Link>}</TableCell>
+
+
+                                <TableCell align="center">{order?.paymentStatus === 'paymentComplete' ? 'paid' : 'not paid yet'}</TableCell>
+
+
+
                                 <TableCell align="center">{order?.orderStatus === "Shipped" &&
                                     <p className="text-warning fw-bold">Your product is on the way</p>
                                 }

@@ -22,7 +22,7 @@ const DeleteProducts = () => {
         setDeleteId(id);
     };
 
-    const url = 'https://morning-peak-49686.herokuapp.com/books';
+    const url = 'http://localhost:5000/books';
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
@@ -40,7 +40,7 @@ const DeleteProducts = () => {
 
     const handleDeleteModal = (id) => {
 
-        const url = `https://morning-peak-49686.herokuapp.com/products/${id}`;
+        const url = `http://localhost:5000/products/${id}`;
         fetch(url, {
             method: "DELETE",
         })

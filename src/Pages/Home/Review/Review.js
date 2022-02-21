@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 const Review = () => {
     const [users, setUsers] = useState([]);
     useEffect(() => {
-        fetch('https://morning-peak-49686.herokuapp.com/review')
+        fetch('http://localhost:5000/review')
             .then(res => res.json())
             .then(data => setUsers(data))
             .catch((error) => {

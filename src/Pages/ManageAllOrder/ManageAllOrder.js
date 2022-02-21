@@ -16,7 +16,7 @@ const ManageAllOrder = () => {
 
 
     useEffect(() => {
-        fetch("https://morning-peak-49686.herokuapp.com/allOrders")
+        fetch("http://localhost:5000/allOrders")
             .then((res) => res.json())
             .then((data) => {
                 setOrders(data)
@@ -286,7 +286,7 @@ const ManageAllOrder = () => {
                                                 </li>
                                             </ul>
                                         </div></TableCell>
-                                        <TableCell align="center"> {order?.payment ? "paid" : "Not paid yet"}</TableCell>
+                                        <TableCell align="center"> {order?.paymentStatus === 'paymentComplete' ? 'paid' : 'not paid yet'}</TableCell>
                                         <TableCell align="center"> <button
                                             onClick={() => handleOpenModal(order._id)}
                                             className="ms-1 border-0"

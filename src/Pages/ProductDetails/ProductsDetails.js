@@ -30,7 +30,7 @@ const ProductDetails = () => {
 
 
     useEffect(() => {
-        fetch('https://morning-peak-49686.herokuapp.com/books')
+        fetch('http://localhost:5000/books')
             .then(res => res.json())
             .then(data => setServiceDetails(data))
     }, [])
@@ -67,7 +67,7 @@ const ProductDetails = () => {
         data.email = user?.email;
         data.quantity = quantity;
 
-        fetch('https://morning-peak-49686.herokuapp.com/addToCart', {
+        fetch('http://localhost:5000/addToCart', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

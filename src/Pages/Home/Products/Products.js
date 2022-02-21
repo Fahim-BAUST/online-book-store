@@ -7,7 +7,7 @@ const Products = () => {
     // aiekhane json file theke book gulo k fetch kore nie asha hoice and 'products' a set kora hoice .
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('https://morning-peak-49686.herokuapp.com/books')
+        fetch('http://localhost:5000/books')
             .then(res => res.json())
             .then(data => setProducts(data))
 

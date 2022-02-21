@@ -15,7 +15,7 @@ const MakeAdmin = () => {
     const handleAdminSubmit = e => {
 
         const user = { email, mainEmail };
-        fetch('https://morning-peak-49686.herokuapp.com/user/admin/', {
+        fetch('http://localhost:5000/user/admin/', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

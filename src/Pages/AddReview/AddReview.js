@@ -30,7 +30,7 @@ const AddReview = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch('https://morning-peak-49686.herokuapp.com/addReview', {
+                fetch('http://localhost:5000/addReview', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

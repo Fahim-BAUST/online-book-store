@@ -26,7 +26,7 @@ const CartAndPlaceOrder = () => {
     const email = user.email;
     let sum = 0;
 
-    const url = `https://morning-peak-49686.herokuapp.com/addToCart/cart/${email}`;
+    const url = `http://localhost:5000/addToCart/cart/${email}`;
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
@@ -62,7 +62,7 @@ const CartAndPlaceOrder = () => {
 
     const handleDeleteModal = (id) => {
         setOpenModal(false);
-        const url = `https://morning-peak-49686.herokuapp.com/cart/${id}`;
+        const url = `http://localhost:5000/cart/${id}`;
         fetch(url, {
             method: "DELETE",
         })
@@ -96,7 +96,7 @@ const CartAndPlaceOrder = () => {
     const handleDeleteAll = (email) => {
         setOpenModal(false);
 
-        const url = `https://morning-peak-49686.herokuapp.com/cartRemove/${email}`;
+        const url = `http://localhost:5000/cartRemove/${email}`;
         fetch(url, {
             method: "DELETE",
         })
@@ -144,6 +144,7 @@ const CartAndPlaceOrder = () => {
     };
 
     const onSubmit = data => {
+
         Swal.fire({
             title: 'Are you sure?',
             text: "You want to submit?",
@@ -157,8 +158,10 @@ const CartAndPlaceOrder = () => {
                 data.order = prod;
                 data.orderStatus = "Pending";
                 data.totalPrice = total;
+                data.total_amount = total;
+                data.cus_email = user?.email
 
-                fetch('https://morning-peak-49686.herokuapp.com/cartToOrders', {
+                fetch('http://localhost:5000/init', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -167,20 +170,9 @@ const CartAndPlaceOrder = () => {
                 })
                     .then(res => res.json())
                     .then(result => {
-                        if (result.insertedId) {
-                            Swal.fire(
-                                'Order Placed!',
-                                'Your order has been placed.',
-                                'success'
-                            )
-                            reset();
-                        } else {
-                            Swal.fire(
-                                'Cancelled',
-                                'Your order is canceled',
-                                'error'
-                            )
-                        }
+                        console.log(result);
+                        window.location.replace(result)
+
                     }).catch((error) => {
                         Swal.fire({
                             icon: 'error',
@@ -188,7 +180,6 @@ const CartAndPlaceOrder = () => {
                             text: `${error.message === "Failed to fetch" ? "No network connection" : error.message}`,
                         })
                     })
-
             }
         })
 
